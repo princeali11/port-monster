@@ -20,8 +20,6 @@
                         <th>Depature Port</th>
                         <th>Arrival Port</th>
                         <th>Status</th>
-                        <th>Quantity</th>
-	                    <th>Weight</th>
 	                    <th>Actions</th>
                     </tr>
                     @foreach ($bookings as $booking)                    	
