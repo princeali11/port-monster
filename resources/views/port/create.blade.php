@@ -5,12 +5,11 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Update ship details</div>                
+                <div class="panel-heading">Create new Port</div>
                 <div class="panel-body">
-                    <form method="POST" action="/ships/{{ $ship->id }}" class="form-horizontal">
-                    <input type="hidden" name="_method" value="PUT">
+                    <form method="POST" action="/port" class="form-horizontal">
                     {{ csrf_field() }}
-                        @include('ships.partials.form')
+                        @include('port.partials.form')
                     </form>
                 </div>
             </div>

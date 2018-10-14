@@ -13,13 +13,9 @@ class CreateSchedulesTable extends Migration
      */
     public function up()
     {
-        Schema::create('schedules', function (Blueprint $table) {
+        Schema::create('containers', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('ship_id')->unsigned();
-            $table->datetime('departure_time');
-            $table->string('departure_port');
-            $table->string('warehouse');
-            $table->integer('capacity');            
+            $table->string('size');
             $table->timestamps();
         });
     }

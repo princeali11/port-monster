@@ -13,10 +13,10 @@ class CreateShipsTable extends Migration
      */
     public function up()
     {
-        Schema::create('ships', function (Blueprint $table) {
+        Schema::create('ports', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('reg_no');
+            $table->string('location');
             $table->timestamps();
         });
     }

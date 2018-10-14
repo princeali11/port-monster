@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Booking;
-use App\Schedule;
+use App\Container;
 use App\Customer;
+use App\Port;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
@@ -22,17 +23,11 @@ class BookingController extends Controller
     	return view('bookings.index',compact('bookings'));
     }
 
-    public function create(Request $request) {
-    	$date = date("Y-m-d H:i:s");
-    	$weight = "";
-    	$quantity = "";
-    	if ($request->has('departure_time')) {
-    		$date = $request->input('departure_time');
-    	}
-    	$schedules = Schedule::where('departure_time','>',$date)->get();
-        $date = Carbon::parse($date);
-    	return view('bookings.create',compact('schedules','date','weight','quantity'));
-    	// return view('bookings.)
+    public function create() {
+    	return view('bookings.create', [
+    	    'ports'         => Port::all(),
+            'containers'    => Container::all()
+        ]);
     }
 
     public function showform($schedule_id) {
@@ -41,8 +36,16 @@ class BookingController extends Controller
     	return view('bookings.showform',compact('schedule_id','customers','booking'));
     }
 
-    public function store(Schedule $schedule, Request $request) {
-        $schedule->bookings()->create($request->all());
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function store(Request $request) {
+        Booking::create(
+            array_merge($request->all(),
+                ['customer_id' => auth()->user()->id]
+            )
+        );
         return redirect('bookings');
     }
 

@@ -20,8 +20,8 @@
             <!-- Left Side Of Navbar -->
             <ul class="nav navbar-nav">
                 @if (Auth::check() && Auth::user()->isStaff())
-                   <li><a href="/ships">Containers</a></li>      
-                   <!-- <li><a href="/schedules">Schedules</a></li>       -->
+                   <li><a href="/container">Containers</a></li>
+                   <li><a href="/port">Ports</a></li>
                    <li><a href="/users">Users</a></li>    
                 @endif
                 @if (Auth::check())

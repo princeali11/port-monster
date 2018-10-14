@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Schedule;
-use App\Ship;
+use App\Container;
+use App\Port;
 class ScheduleController extends Controller
 {
     public function __construct()
@@ -13,28 +13,28 @@ class ScheduleController extends Controller
     }
     
     public function index() {
-    	$schedules = Schedule::all();
+    	$schedules = Container::all();
     	return view('schedules.index', compact('schedules'));
     }
 
     public function create() {
-    	$schedule = new Schedule;
-    	$ships = Ship::all();
+    	$schedule = new Container;
+    	$ships = Port::all();
     	return view('schedules.create', compact('schedule','ships'));	
     }
 
     public function store(Request $request) {
-    	$ship = Ship::findOrFail($request->input('ship_id'));
+    	$ship = Port::findOrFail($request->input('ship_id'));
     	$ship->schedules()->create($request->all());    	
     	return redirect('schedules');
     }
 
-    public function edit(Schedule $schedule) {
-    	$ships = Ship::all();
+    public function edit(Container $schedule) {
+    	$ships = Port::all();
     	return view('schedules.edit', compact('schedule','ships'));
     }
 
-    public function update(Schedule $schedule, Request $request) {
+    public function update(Container $schedule, Request $request) {
         $schedule->update($request->all());
         $schedule->save();
         return redirect('schedules');

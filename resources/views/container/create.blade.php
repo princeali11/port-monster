@@ -5,12 +5,11 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Update schedule details</div>                
+                <div class="panel-heading">Create new Container</div>
                 <div class="panel-body">
-                    <form method="POST" action="/schedules/{{ $schedule->id }}" class="form-horizontal">
-                    <input type="hidden" name="_method" value="PUT">
+                    <form method="POST" action="{{route('container.store')}}" class="form-horizontal">
                     {{ csrf_field() }}
-                        @include('schedules.partials.form')
+                        @include('container.partials.form')
                     </form>
                 </div>
             </div>

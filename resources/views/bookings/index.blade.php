@@ -24,11 +24,14 @@
                     </tr>
                     @foreach ($bookings as $booking)                    	
                     <tr>
-                    	<td>{{ $booking->id }}</td>
-                    	<td>{{ $booking->customer->name }}</td>
-                        <td>{{ $booking->schedule->departure_time->format('jS \\of F Y h:i:s A') }}</td>
-                        <td>{{ $booking->weight }}</td>
-                    	<td>{{ $booking->quantity }}</td>
+                        <td>{{ $booking->id }}</td>
+                    	<td>{{ $booking->shipping_date->format('jS \\of F Y h:i:s A') }}</td>
+                        <td>{{ $booking->depature_port }}</td>
+                        <td>{{ $booking->arrival_port }}</td>
+                        <td>{{ $booking->approval_status }}</td>
+                    	{{--<td>{{ optional($booking->customer)->name }}</td>--}}
+                        {{--<td>{{ $booking->schedule->departure_time->format('jS \\of F Y h:i:s A') }}</td>--}}
+                        {{--<td>{{ $booking->weight }}</td>--}}
                     	<td>
                             <a href="/bookings/{{ $booking->id }}/edit" class="btn btn-info btn-xs">Edit</a>
                     		<a href="/bookings/{{ $booking->id }}" class="btn btn-primary btn-xs">View Booking</a>
