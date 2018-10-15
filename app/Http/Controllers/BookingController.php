@@ -26,7 +26,8 @@ class BookingController extends Controller
     public function create() {
     	return view('bookings.create', [
     	    'ports'         => Port::all(),
-            'containers'    => Container::all()
+            'containers'    => Container::all(),
+            'booking'       => new \stdClass()
         ]);
     }
 
@@ -54,8 +55,11 @@ class BookingController extends Controller
     }
 
     public function edit(Booking $booking) {
-        $customers = Customer::all();
-        return view('bookings.edit',compact('customers','booking'));
+        return view('bookings.edit', [
+            'ports'         => Port::all(),
+            'containers'    => Container::all(),
+            'booking'       =>  $booking
+        ]);
     }
 
     public function update(Booking $booking, Request $request) {
